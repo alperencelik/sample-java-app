@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: argo-app-generator
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: git@github.com/alperencelik/sample-java-app-challenge.git 
+      revision: HEAD
+      directories:
+      - path: gitops/infra-apps/*
+      - path: gitops/apps/*
+      - path: gitops/argo-cd/
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: "default"
+      source:
+        repoURL: git@github.com/alperencelik/sample-java-app-challenge.git 
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{path.basename}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
