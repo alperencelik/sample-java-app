@@ -9,7 +9,7 @@ spec:
       repoURL: https://github.com/alperencelik/sample-java-app-challenge.git
       revision: HEAD
       directories:
-      - path: gitops/argo-cd
+      - path: gitops/argocd
   template:
     metadata:
       name: '{{path.basename}}'
@@ -22,6 +22,74 @@ spec:
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{path.basename}}'
+      syncPolicy:
+        automated:
+          prune: false
+          selfHeal: false
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: monitoring-app-generator
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/alperencelik/sample-java-app-challenge.git
+      revision: HEAD
+      directories:
+      - path: gitops/infra-apps/monitoring-system/*
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: "default"
+      source:
+        repoURL: https://github.com/alperencelik/sample-java-app-challenge.git 
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: monitoring-system 
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: infra-app-generator
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/alperencelik/sample-java-app-challenge.git
+      revision: HEAD
+      directories:
+      - path: gitops/infra-apps/*
+      - path: gitops/infra-apps/monitoring-system
+        exclude: true
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: "default"
+      source:
+        repoURL: https://github.com/alperencelik/sample-java-app-challenge.git 
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{path.basename}}' 
       syncPolicy:
         automated:
           prune: true
