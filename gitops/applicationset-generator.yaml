@@ -2,11 +2,11 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: argo-app-generator
-  namespace: argocd
+  namespace: default
 spec:
   generators:
   - git:
-      repoURL: git@github.com/alperencelik/sample-java-app-challenge.git 
+      repoURL: https://github.com/alperencelik/sample-java-app-challenge.git
       revision: HEAD
       directories:
       - path: gitops/infra-apps/*
@@ -18,7 +18,7 @@ spec:
     spec:
       project: "default"
       source:
-        repoURL: git@github.com/alperencelik/sample-java-app-challenge.git 
+        repoURL: https://github.com/alperencelik/sample-java-app-challenge.git 
         targetRevision: HEAD
         path: '{{path}}'
       destination:
