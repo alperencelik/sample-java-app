@@ -9,7 +9,7 @@ spec:
       repoURL: https://github.com/alperencelik/sample-java-app-challenge.git
       revision: HEAD
       directories:
-      - path: gitops/infra-apps/*
+      - path: gitops/infra-apps/*/*
       - path: gitops/apps/*
       - path: gitops/argo-cd/*
   template:
