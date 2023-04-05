@@ -2,6 +2,15 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# Address Pool configuration
+
+addressPool:
+  name: default
+  spec:
+    protocol: layer2
+    addresses:
+      - 10.0.0.200-10.0.0.240
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""

@@ -1,0 +1,7 @@
+apiVersion: metallb.io/v1alpha1
+kind: AddressPool
+metadata:
+  namespace: {{ .Release.Namespace }} 
+  name: {{ .Values.addressPool.name }} 
+spec:
+{{ toYaml .Values.addressPool.spec | indent 2 }}
