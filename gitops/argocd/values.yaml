@@ -1694,7 +1694,8 @@ server:
     # -- Enable an ingress resource for the Argo CD server
     enabled: true
     # -- Additional ingress annotations
-    annotations: {}
+    annotations: 
+      cert-manager.io/cluster-issuer: acme-issuer
     # -- Additional ingress labels
     labels: {}
     # -- Defines which ingress controller will implement the resource
@@ -1729,7 +1730,7 @@ server:
       #     - argocd.example.com
 
     # -- Uses `server.service.servicePortHttps` instead `server.service.servicePortHttp`
-    https: false
+    https: true
 
   # dedicated ingress for gRPC as documented at
   # Ref: https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/
