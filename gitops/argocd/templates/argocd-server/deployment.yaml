@@ -54,7 +54,6 @@ spec:
         - argocd-server
         - --port={{ .Values.server.containerPorts.server }}
         - --metrics-port={{ .Values.server.containerPorts.metrics }}
-        - --insecure
         {{- with .Values.server.logFormat }}
         - --logformat
         - {{ . | quote }}
