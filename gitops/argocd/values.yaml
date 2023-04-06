@@ -1725,7 +1725,7 @@ server:
 
     # -- Ingress TLS configuration
     tls: 
-      # - secretName: your-certificate-name
+      - secretName: argocd.alperen.cloud-tls 
         hosts:
         - argocd.alperen.cloud
 
