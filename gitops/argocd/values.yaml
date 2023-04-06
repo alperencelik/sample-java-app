@@ -1724,10 +1724,10 @@ server:
       #         name: use-annotation
 
     # -- Ingress TLS configuration
-    tls: []
+    tls: 
       # - secretName: your-certificate-name
-      #   hosts:
-      #     - argocd.example.com
+        hosts:
+        - argocd.alperen.cloud
 
     # -- Uses `server.service.servicePortHttps` instead `server.service.servicePortHttp`
     https: true
