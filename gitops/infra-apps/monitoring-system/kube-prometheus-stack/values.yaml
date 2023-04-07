@@ -814,7 +814,7 @@ grafana:
     tls: 
       - secretName: grafana.alperen.cloud-tls 
         hosts:
-        - grafana.example.com
+        - grafana.alperen.cloud
 
   sidecar:
     dashboards:
