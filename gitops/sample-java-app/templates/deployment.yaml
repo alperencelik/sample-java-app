@@ -5,13 +5,6 @@ metadata:
   labels:
     {{- include "sample-java-app.labels" . | nindent 4 }}
 spec:
-  topologySpreadConstraints:
-    - maxSkew: 1
-      topologyKey: kubernetes.io/hostname
-      whenUnsatisfiable: ScheduleAnyway
-      labelSelector:
-        matchLabels:
-          type: sample-java-app
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
@@ -27,6 +20,13 @@ spec:
       labels:
         {{- include "sample-java-app.selectorLabels" . | nindent 8 }}
     spec:
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            type: sample-java-app
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
