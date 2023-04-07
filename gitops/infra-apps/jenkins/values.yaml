@@ -168,10 +168,15 @@ topologySpreadConstraints: []
 hostAliases: []
 ## @param extraVolumes Optionally specify extra list of additional volumes for Jenkins pods
 ##
-extraVolumes: []
+extraVolumes: 
+  - name: kaniko
+    emptyDir: {}
 ## @param extraVolumeMounts Optionally specify extra list of additional volumeMounts for Jenkins container(s)
 ##
-extraVolumeMounts: []
+extraVolumeMounts: 
+  - name: kaniko
+    mountPath: /opt/app/
+    subPath: kaniko
 ## @param sidecars Add additional sidecar containers to the Jenkins pod
 ## e.g:
 ## sidecars:
@@ -194,7 +199,15 @@ sidecars: []
 ##      - name: portname
 ##        containerPort: 1234
 ##
-initContainers: []
+initContainers: 
+- name: kaniko-installer
+  image: alpine:latest
+  command: ["/bin/sh"]
+  args: ["-c", "apk add --no-cache curl && curl -LO https://storage.googleapis.com/kaniko/releases/latest/kaniko-linux-amd64 && chmod +x kaniko-linux-amd64 && mv kaniko-linux-amd64 /opt/app/kaniko"]
+  volumeMounts:
+  - name: kaniko
+    mountPath: /opt/app
+    subPath: kaniko
 ## @param lifecycleHooks Add lifecycle hooks to the Jenkins deployment
 ##
 lifecycleHooks: {}
