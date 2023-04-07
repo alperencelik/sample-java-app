@@ -101,7 +101,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: infra-app-generator
+  name: sample-java-app-generator
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
