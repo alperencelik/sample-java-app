@@ -16,12 +16,12 @@ fullnameOverride: ""
 
 deploymentSpec:
   topologySpreadConstraints:
-    - maxSkew: 1
-      topologyKey: kubernetes.io/hostname
-      whenUnsatisfiable: ScheduleAnyway
-      labelSelector:
-        matchLabels:
-          type: sample-java-app
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            type: sample-java-app
 
 serviceAccount:
   # Specifies whether a service account should be created
