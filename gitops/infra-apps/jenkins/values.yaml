@@ -148,7 +148,7 @@ updateStrategy:
 
 ## @param serviceAccountName Jenkins pod service account name
 ##
-serviceAccountName: "default"
+serviceAccountName: "jenkins"
 
 ## @param priorityClassName Jenkins pod priority class name
 ##
