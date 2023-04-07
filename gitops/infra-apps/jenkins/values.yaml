@@ -202,8 +202,13 @@ sidecars: []
 initContainers: 
 - name: kaniko-installer
   image: alpine:latest
-  command: ["/bin/sh"]
-  args: ["-c", "apk add --no-cache curl && curl -LO https://storage.googleapis.com/kaniko/releases/latest/kaniko-linux-amd64 && chmod +x kaniko-linux-amd64 && mv kaniko-linux-amd64 /opt/app/kaniko"]
+  command: ["/bin/sh", "-c"]
+  args: 
+  - |
+    apk add --no-cache curl 
+    curl -LO https://github.com/GoogleContainerTools/kaniko/releases/download/v1.5.2/executor-amd64 
+    chmod +x executor-amd64
+    mv executor-amd64 /opt/app/kaniko
   volumeMounts:
   - name: kaniko
     mountPath: /opt/app
