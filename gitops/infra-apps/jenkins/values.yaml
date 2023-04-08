@@ -110,9 +110,7 @@ jenkinsHome: /bitnami/jenkins/home
 javaOpts: []
 
 plugins:
-  - "kubernetes:1.30.1"
-  - "pipeline-model-definition:1.8.4"
-  - "locale:1.4"
+  - "kubernetes:3909.v1f2c633e8590"
 ## @param disableInitialization Skip performing the initial bootstrapping for Jenkins
 ##
 disableInitialization: "no"
