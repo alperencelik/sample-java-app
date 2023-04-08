@@ -110,7 +110,14 @@ jenkinsHome: /bitnami/jenkins/home
 javaOpts: []
 
 plugins:
-  - "kubernetes:3909.v1f2c633e8590"
+  - "kubernetes"
+
+latestPlugins: true
+
+skipImagePlugins: false
+
+
+
 ## @param disableInitialization Skip performing the initial bootstrapping for Jenkins
 ##
 disableInitialization: "no"
