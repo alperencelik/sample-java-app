@@ -107,7 +107,7 @@ jenkinsHost: ""
 jenkinsHome: /bitnami/jenkins/home
 ## @param javaOpts Custom JVM parameters
 ##
-javaOpts: 
+javaOpts: [] 
 
 plugins:
   - kubernetes
