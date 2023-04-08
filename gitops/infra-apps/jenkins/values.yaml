@@ -112,14 +112,14 @@ javaOpts: []
 plugins:
   - kubernetes
 
-extraPlugins:
-  - kubernetes
+# extraPlugins:
+  # - kubernetes
 
-latestPlugins: true
+# latestPlugins: true
 
-latestSpecifiedPlugins: true
+# latestSpecifiedPlugins: true
 
-skipImagePlugins: false
+# skipImagePlugins: false
 
 
 
