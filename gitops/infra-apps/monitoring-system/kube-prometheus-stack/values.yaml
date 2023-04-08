@@ -24,7 +24,8 @@ fullnameOverride: ""
 
 ## Labels to apply to all resources
 ##
-commonLabels: {}
+commonLabels: 
+  prometheus: kube-prometheus-stack
 # scmhash: abc123
 # myLabel: aakkmd
 
@@ -2803,7 +2804,9 @@ prometheus:
     ## ServiceMonitors to be selected for target discovery.
     ## If {}, select all ServiceMonitors
     ##
-    serviceMonitorSelector: {}
+    serviceMonitorSelector: 
+      matchLabels:
+        prometheus: "kube-prometheus-stack"
     ## Example which selects ServiceMonitors with label "prometheus" set to "somelabel"
     # serviceMonitorSelector:
     #   matchLabels:
