@@ -947,7 +947,19 @@ rbac:
   ##       - get
   ##       - list
   ##
-  rules: []
+  rules: 
+    - apiGroups:
+        - ""
+      resources:
+        - ""
+      verbs:
+        - create
+        - delete
+        - get
+        - list
+        - watch
+        - update
+        - patch
 
 ## ServiceAccount configuration
 ##
