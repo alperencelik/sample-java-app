@@ -20,13 +20,14 @@ spec:
       labels:
         {{- include "sample-java-app.selectorLabels" . | nindent 8 }}
     spec:
-      topologySpreadConstraints:
-      - maxSkew: 1
-        topologyKey: kubernetes.io/hostname
-        whenUnsatisfiable: ScheduleAnyway
-        labelSelector:
-          matchLabels:
-            type: sample-java-app
+      {{ toYaml .Values.deploymentSpec | nindent 6 }}
+#       topologySpreadConstraints:
+      # - maxSkew: 1
+        # topologyKey: kubernetes.io/hostname
+        # whenUnsatisfiable: ScheduleAnyway
+        # labelSelector:
+          # matchLabels:
+            # type: sample-java-app
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
@@ -44,14 +45,14 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-#           livenessProbe:
-            # httpGet:
-              # path: /
-              # port: http
-          # readinessProbe:
-            # httpGet:
-              # path: /
-              # port: http
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

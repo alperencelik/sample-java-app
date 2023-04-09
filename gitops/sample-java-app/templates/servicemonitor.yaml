@@ -1,0 +1,21 @@
+{{- if .Values.serviceMonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    prometheus: kube-prometheus-stack
+  name: {{ include "sample-java-app.fullname" . }} 
+  namespace: {{ .Release.Namespace }} 
+spec:
+  endpoints:
+  - interval: {{ .Values.serviceMonitor.interval }}
+    scrapeTimeout: {{ .Values.serviceMonitor.scrapeTimeout }}
+    path: {{ .Values.serviceMonitor.path }}
+    port: {{ .Values.serviceMonitor.port }}
+  namespaceSelector:
+    matchNames:
+    - {{ .Release.Namespace }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "sample-java-app.fullname" . }} 
+{{-  end }}
