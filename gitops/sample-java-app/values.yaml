@@ -2,6 +2,10 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+Rollout:
+  enabled: true
+  # Enabling the rollouts disabled the deployment.
+
 replicaCount: 9
 
 image:

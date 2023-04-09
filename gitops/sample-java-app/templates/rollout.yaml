@@ -1,6 +1,6 @@
-{{- if not .Values.Rollout.enabled -}}
-apiVersion: apps/v1
-kind: Deployment
+{{- if .Values.Rollout.enabled }}
+apiVersion: argoproj.io/v1alpha1 
+kind: Rollout
 metadata:
   name: {{ include "sample-java-app.fullname" . }}
   labels:
@@ -9,6 +9,19 @@ spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
+  strategy:
+    canary:
+      steps:
+      - setWeight: 20
+      # The following pause step will pause the rollout indefinitely until manually resumed.
+      # Rollouts can be manually resumed by running `kubectl argo rollouts promote ROLLOUT`
+      - pause: {}
+      - setWeight: 40
+      - pause: {duration: 40s}
+      - setWeight: 60
+      - pause: {duration: 20s}
+      - setWeight: 80
+      - pause: {duration: 20s}
   selector:
     matchLabels:
       {{- include "sample-java-app.selectorLabels" . | nindent 6 }}
@@ -21,21 +34,6 @@ spec:
       labels:
         {{- include "sample-java-app.selectorLabels" . | nindent 8 }}
     spec:
-      {{ toYaml .Values.deploymentSpec | nindent 6 }}
-#       topologySpreadConstraints:
-      # - maxSkew: 1
-        # topologyKey: kubernetes.io/hostname
-        # whenUnsatisfiable: ScheduleAnyway
-        # labelSelector:
-          # matchLabels:
-            # type: sample-java-app
-      {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      serviceAccountName: {{ include "sample-java-app.serviceAccountName" . }}
-      securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -67,5 +65,5 @@ spec:
       {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
-      {{- end }}
+      {{- end }} 
 {{- end }}
