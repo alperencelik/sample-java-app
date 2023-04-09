@@ -141,6 +141,7 @@ extraEnvVarsSecret: ""
 ##
 plugins: 
   - kubernetes:3909.v1f2c633e8590
+  - workflow-aggregator:596.v8c21c963d92d
   - locale:262.ved03281fa_64f
 ## @param extraPlugins List of plugins to install in addition to those listed in `plugins`
 ##
