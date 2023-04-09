@@ -240,7 +240,7 @@ tls:
 configAsCode:
   ## @param configAsCode.enabled Enable configuration as code.
   ##
-  enabled: false
+  enabled: true
   ## @param configAsCode.extraConfigFiles List of additional configuration-as-code files to be mounted
   ## E.g.:
   ##  welcome-message.yaml: |-
@@ -329,7 +329,7 @@ configAsCode:
 agent:
   ## @param agent.enabled Set to true to enable the configuration of Jenkins kubernetes agents
   ##
-  enabled: false
+  enabled: true
   ## Bitnami Jenkins agent image
   ## ref: https://hub.docker.com/r/bitnami/jenkins/tags/
   ## @param agent.image.registry Jenkins image registry
@@ -947,19 +947,7 @@ rbac:
   ##       - get
   ##       - list
   ##
-  rules: 
-    - apiGroups:
-        - ""
-      resources:
-        - ""
-      verbs:
-        - create
-        - delete
-        - get
-        - list
-        - watch
-        - update
-        - patch
+  rules: []
 
 ## ServiceAccount configuration
 ##
