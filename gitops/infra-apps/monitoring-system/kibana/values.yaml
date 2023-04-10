@@ -136,20 +136,21 @@ service:
   httpPortName: http
 
 ingress:
-  enabled: false
+  enabled: true
   className: "nginx"
   pathtype: ImplementationSpecific
-  annotations: {}
+  annotations: 
+    cert-manager.io/cluster-issuer: acme-issuer
   # kubernetes.io/ingress.class: nginx
   # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: kibana-example.local
+    - host: kibana.alperen.cloud 
       paths:
         - path: /
-  #tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  tls:
+    - secretName: kibana.alperen.cloud-tls 
+      hosts:
+        - kibana.alperen.cloud 
 
 readinessProbe:
   failureThreshold: 3
