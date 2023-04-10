@@ -384,6 +384,6 @@ fileConfigs:
         port 9200
         path ""
         user elastic
-        password 7r1TCBEPWezdVo0k 
+        password FCZyyKmIz2SQQzcE 
       </match>
     </label>
