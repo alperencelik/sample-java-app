@@ -1,31 +1,48 @@
 annotations:
-  category: Infrastructure
-  licenses: Apache-2.0
+  artifacthub.io/category: integration-delivery
+  artifacthub.io/images: |
+    - name: jenkins
+      image: jenkins/jenkins:2.387.2-jdk11
+    - name: k8s-sidecar
+      image: kiwigrid/k8s-sidecar:1.23.1
+    - name: inbound-agent
+      image: jenkins/inbound-agent:3107.v665000b_51092-5
+    - name: backup
+      image: maorfr/kube-tasks:0.2.0
+  artifacthub.io/license: Apache-2.0
+  artifacthub.io/links: |
+    - name: Chart Source
+      url: https://github.com/jenkinsci/helm-charts/tree/main/charts/jenkins
+    - name: Jenkins
+      url: https://www.jenkins.io/
+    - name: support
+      url: https://github.com/jenkinsci/helm-charts/issues
 apiVersion: v2
 appVersion: 2.387.2
-dependencies:
-- name: common
-  repository: https://charts.bitnami.com/bitnami
-  tags:
-  - bitnami-common
-  version: 2.x.x
-description: Jenkins is an open source Continuous Integration and Continuous Delivery
-  (CI/CD) server designed to automate the building, testing, and deploying of any
-  software project.
-home: https://github.com/bitnami/charts/tree/main/bitnami/jenkins
-icon: https://bitnami.com/assets/stacks/jenkins/img/jenkins-stack-220x234.png
+description: Jenkins - Build great things at any scale! The leading open source automation
+  server, Jenkins provides hundreds of plugins to support building, deploying and
+  automating any project.
+home: https://jenkins.io/
+icon: https://get.jenkins.io/art/jenkins-logo/logo.svg
 keywords:
 - jenkins
 - ci
-- cd
-- http
-- web
-- application
+- devops
 maintainers:
-- name: Bitnami
-  url: https://github.com/bitnami/charts
+- email: maor.friedman@redhat.com
+  name: maorfr
+- email: mail@torstenwalter.de
+  name: torstenwalter
+- email: garridomota@gmail.com
+  name: mogaal
+- email: wmcdona89@gmail.com
+  name: wmcdona89
+- email: timjacomb1@gmail.com
+  name: timja
 name: jenkins
 sources:
-- https://github.com/bitnami/containers/tree/main/bitnami/jenkins
-- https://jenkins.io/
-version: 12.0.4
+- https://github.com/jenkinsci/jenkins
+- https://github.com/jenkinsci/docker-inbound-agent
+- https://github.com/maorfr/kube-tasks
+- https://github.com/jenkinsci/configuration-as-code-plugin
+version: 4.3.20
