@@ -376,14 +376,14 @@ fileConfigs:
       </match>
     </label>
 
-  04_outputs.conf: |-
-    <label @OUTPUT>
-      <match **>
-        @type elasticsearch
-        host "elasticsearch-master"
-        port 9200
-        path ""
-        user elastic
-        password FCZyyKmIz2SQQzcE 
-      </match>
-    </label>
+#   04_outputs.conf: |-
+    # <label @OUTPUT>
+      # <match **>
+        # @type elasticsearch
+        # host "elasticsearch-master"
+        # port 9200
+        # path ""
+        # user elastic
+        # password FCZyyKmIz2SQQzcE 
+      # </match>
+    # </label>
