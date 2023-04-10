@@ -640,6 +640,9 @@ agent:
   runAsGroup:
   hostNetworking: false
   resources:
+    requests:
+      cpu: "52m"
+      memory: "512Mi"
     limits:
       cpu: "512m"
       memory: "512Mi"
@@ -930,6 +933,9 @@ backup:
   # - name: "AWS_REGION"
   #   value: "us-east-1"
   resources:
+    requests:
+      memory: 1Gi
+      cpu: 0.1
     limits:
       memory: 1Gi
       cpu: 1
