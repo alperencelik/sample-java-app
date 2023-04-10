@@ -58,6 +58,11 @@ ingress:
   className: "nginx"
   annotations:
     cert-manager.io/cluster-issuer: acme-issuer 
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/affinity-mode: "persistent"
+    nginx.ingress.kubernetes.io/session-cookie-name: "route"
+    nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
 
