@@ -640,7 +640,6 @@ agent:
   runAsGroup:
   hostNetworking: false
   resources:
-    requests:
     limits:
       cpu: "512m"
       memory: "512Mi"
