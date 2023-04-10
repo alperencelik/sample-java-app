@@ -1,0 +1,30 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: my-validating-webhook 
+webhooks:
+- admissionReviewVersions:
+  - v1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJkVENDQVJ5Z0F3SUJBZ0lSQVBqa3ZMMGtmNDRnV2huK2RHTTMveFl3Q2dZSUtvWkl6ajBFQXdJd0R6RU4KTUFzR0ExVUVDaE1FYm1sc01UQWdGdzB5TXpBME1UQXhNREUyTkROYUdBOHlNVEl6TURNeE56RXdNVFkwTTFvdwpEekVOTUFzR0ExVUVDaE1FYm1sc01UQlpNQk1HQnlxR1NNNDlBZ0VHQ0NxR1NNNDlBd0VIQTBJQUJLU1N5QTQ0CkFQYUxrUGJoM1hsSFZ2R1FwMGJncjVUMUpCeFdIakYvNTBpOUh0VEl6QlJQMUhKMDZCd3RwY3lwZUsvbC9wbWIKZDJxSjhPL2dBbmtFcVRtalZ6QlZNQTRHQTFVZER3RUIvd1FFQXdJQ0JEQVRCZ05WSFNVRUREQUtCZ2dyQmdFRgpCUWNEQVRBUEJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJTeU9BeUNERmVjd2VMSUhrL2tIUjN4CjVzM0RhakFLQmdncWhrak9QUVFEQWdOSEFEQkVBaUFqS0ZNWXVsODJaZVM1M0NrWVZaS0lhNGFpMTR6SVdIRDUKY3FaRUYwRUIvZ0lnYVI1OTlwVmxrV1VjVE8waE5aOGNCRFJOelBGei92bjVFdnVNSXhvd25hZz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+    service:
+      name: validate-webhook 
+      namespace: default
+      path: /validate
+      port: 8080
+  failurePolicy: Fail
+  matchPolicy: Equivalent
+  name: validate-webhook.default.svc.cluster.local 
+  rules:
+  - apiGroups:
+    - ""
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - deployments 
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
