@@ -78,6 +78,8 @@ spec:
       - path: gitops/infra-apps/*
       - path: gitops/infra-apps/monitoring-system
         exclude: true
+      - path: gitops/infra-apps/jenkins-old
+        exclude: true
   template:
     metadata:
       name: '{{path.basename}}'
