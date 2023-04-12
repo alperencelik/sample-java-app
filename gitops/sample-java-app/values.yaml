@@ -4,9 +4,9 @@
 
 Rollout:
   enabled: true
-  # Enabling the rollouts disabled the deployment.
+  # Enabling the rollout disables the deployment.
 
-replicaCount: 9
+replicaCount: 4
 
 image:
   repository: alperencelik/sample-java-app
