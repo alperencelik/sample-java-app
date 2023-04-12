@@ -1,20 +1,20 @@
-apiVersion: kyverno.io/v1
-kind: ClusterPolicy
-metadata:
-  name: block-deployments-without-resource-requests
-spec:
-  rules:
-    - name: check-resource-requests
-      match:
-        resources:
-          kinds:
-            - Deployment
-      validate:
-        message: "Deployments must specify resource requests."
-        pattern:
-          spec:
-            template:
-              spec:
-                containers:
-                  - resources:
-                      requests: {}
+# apiVersion: kyverno.io/v1
+# kind: ClusterPolicy
+# metadata:
+  # name: block-deployments-without-resource-requests
+# spec:
+  # rules:
+    # - name: check-resource-requests
+      # match:
+        # resources:
+          # kinds:
+            # - Deployment
+      # validate:
+        # message: "Deployments must specify resource requests."
+        # pattern:
+          # spec:
+            # template:
+              # spec:
+                # containers:
+                  # - resources:
+                      # requests: {}
