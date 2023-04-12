@@ -431,9 +431,10 @@ metricsService:
 
 serviceMonitor:
   # -- Create a `ServiceMonitor` to collect Prometheus metrics.
-  enabled: false
+  enabled: true
   # -- Additional labels
   additionalLabels:
+    prometheus: kube-prometheus-stack
     # key: value
   # -- Override namespace (default is the same as kyverno)
   namespace:

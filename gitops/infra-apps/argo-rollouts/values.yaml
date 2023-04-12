@@ -108,12 +108,13 @@ controller:
 
   metrics:
     # -- Deploy metrics service
-    enabled: false
+    enabled: true
     serviceMonitor:
       # -- Enable a prometheus ServiceMonitor
-      enabled: false
+      enabled: true 
       # -- Labels to be added to the ServiceMonitor
-      additionalLabels: {}
+      additionalLabels:
+        prometheus: kube-prometheus-stack 
       # -- Annotations to be added to the ServiceMonitor
       additionalAnnotations: {}
 

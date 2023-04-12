@@ -531,7 +531,7 @@ metrics:
   serviceMonitor:
     ## @param metrics.serviceMonitor.enabled Specify if a ServiceMonitor will be deployed for Prometheus Operator
     ##
-    enabled: false
+    enabled: true
     ## @param metrics.serviceMonitor.namespace Namespace in which Prometheus is running
     ##
     namespace: ""
@@ -564,10 +564,10 @@ metrics:
     metricRelabelings: []
     ## @param metrics.serviceMonitor.relabelings Specify general relabeling
     ##
-    relabelings: []
+    relabelings:
     ## @param metrics.serviceMonitor.selector Prometheus instance selector labels
     ## ref: https://github.com/bitnami/charts/tree/main/bitnami/prometheus-operator#prometheus-configuration
-    ## selector:
-    ##   prometheus: my-prometheus
+      selector:
+        prometheus: kube-prometheus-stack
     ##
     selector: {}

@@ -653,8 +653,9 @@ controller:
       # externalTrafficPolicy: ""
       # nodePort: ""
     serviceMonitor:
-      enabled: false
-      additionalLabels: {}
+      enabled: true 
+      additionalLabels:
+        prometheus: kube-prometheus-stack 
       ## The label to use to retrieve the job name from.
       ## jobLabel: "app.kubernetes.io/name"
       namespace: ""
