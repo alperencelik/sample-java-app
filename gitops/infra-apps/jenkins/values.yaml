@@ -419,7 +419,10 @@ controller:
   terminationMessagePath:
   terminationMessagePolicy:
 
-  tolerations: []
+  tolerations: 
+  - key: "dedicated"
+    operator: "jenkins"
+    effect: "NoSchedule"
 
   affinity: {}
   # Leverage a priorityClass to ensure your pods survive resource shortages
