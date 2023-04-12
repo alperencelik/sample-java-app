@@ -1,0 +1,32 @@
+- name: Make Git commit locally
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Clone the repository
+      git:
+        repo: https://github.com/alperencelik/sample-java-app-challenge.git
+        dest: /tmp/sample-java-app-challenge
+        version: HEAD
+    - name: Update the version
+      replace:
+        path: /tmp/sample-java-app-challenge/gitops/sample-java-app/values.yaml
+        regexp: 'tag: .+$'
+        replace: 'tag: v8.1.6' 
+    - name: Stage changes
+      git:
+        repo: /tmp/sample-java-app-challenge 
+        state: 'present'
+        update: 'yes'
+        force: 'yes'
+        args:
+          msg: 'Update the version'  
+          author_name: 'Alp'  
+          author_email: 'alperencelik58@gmail.com'
+    - name: Push changes
+      git:
+        repo: /tmp/sample-java-app-challenge 
+        remote: origin
+        push: 'yes'
+        force: 'yes'
+        args:
+          commit: 'yes'
