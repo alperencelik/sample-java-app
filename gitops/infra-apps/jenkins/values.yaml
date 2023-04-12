@@ -421,7 +421,8 @@ controller:
 
   tolerations: 
   - key: "dedicated"
-    operator: "jenkins"
+    operator: "Equal"
+    value: "jenkins"
     effect: "NoSchedule"
 
   affinity: {}
