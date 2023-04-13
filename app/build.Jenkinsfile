@@ -34,12 +34,5 @@ pipeline {
         }
       }
     }
-    post {
-      success {
-        script {
-          env.LATEST_BUILD_ID = env.BUILD_ID
-        }
-      }
-    }
   }
 }
