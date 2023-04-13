@@ -162,7 +162,7 @@ spec:
 {{- end }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
-        # volumeMounts:
+        volumeMounts:
           # - name: elasticsearch-certs
             # mountPath: {{ template "kibana.home_dir" . }}/config/certs
             # readOnly: true
