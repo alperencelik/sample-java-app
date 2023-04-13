@@ -1,4 +1,5 @@
 ---
+
 clusterName: "config"
 replicas: 1
 
@@ -8,6 +9,11 @@ extraEnvs:
       secretKeyRef:
         name: elastic-config-credentials
         key: password
+  - name: ELASTIC_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: elastic-config-credentials
+        key: username
 
 # This is just a dummy file to make sure that
 # the keystore can be mounted at the same time
@@ -22,8 +28,5 @@ keystore:
   - secretName: elastic-config-slack
   - secretName: elastic-config-custom-path
     items:
-      - key: slack_url
-        path: xpack.notification.slack.account.otheraccount.secure_url
-
-secret:
-  enabled: false
+    - key: slack_url
+      path: xpack.notification.slack.account.otheraccount.secure_url

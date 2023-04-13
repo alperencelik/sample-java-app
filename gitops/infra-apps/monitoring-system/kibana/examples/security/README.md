@@ -1,6 +1,6 @@
 # Security
 
-This example deploy Kibana 8.5.1 using authentication and TLS to connect to
+This example deploy Kibana 7.15.0 using authentication and TLS to connect to
 Elasticsearch (see [values][]).
 
 
@@ -8,15 +8,13 @@ Elasticsearch (see [values][]).
 
 * Deploy [Elasticsearch Helm chart][].
 
-* Deploy Kibana chart with security: `make secrets install`
+* Deploy Kibana chart with security: `make install`
 
-* You can now retrieve the `elastic` user password and setup a port forward to connect Kibana:
+* You can now setup a port forward to query Kibana indices:
 
   ```
-  # Get elastic user password:
-  kubectl get secrets --namespace=default security-master-credentials -ojsonpath='{.data.password}' | base64 -d
-  # Setup port forward
-  kubectl port-forward svc/helm-kibana-security-kibana 5601
+  kubectl port-forward svc/security-master 9200
+  curl -u elastic:changeme https://localhost:9200/_cat/indices
   ```
 
 
@@ -25,6 +23,6 @@ Elasticsearch (see [values][]).
 You can also run [goss integration tests][] using `make test`
 
 
-[elasticsearch helm chart]: https://github.com/elastic/helm-charts/tree/main/elasticsearch/examples/security/
-[goss integration tests]: https://github.com/elastic/helm-charts/tree/main/kibana/examples/security/test/goss.yaml
-[values]: https://github.com/elastic/helm-charts/tree/main/kibana/examples/security/values.yaml
+[elasticsearch helm chart]: https://github.com/elastic/helm-charts/tree/7.15/elasticsearch/examples/security/
+[goss integration tests]: https://github.com/elastic/helm-charts/tree/7.15/kibana/examples/security/test/goss.yaml
+[values]: https://github.com/elastic/helm-charts/tree/7.15/kibana/examples/security/values.yaml
