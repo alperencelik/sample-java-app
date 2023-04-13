@@ -35,7 +35,7 @@ esConfig: {}
 #  log4j2.properties: |
 #    key = value
 
-createCert: false
+createCert: true
 
 esJvmOptions: {}
 #  processors.options: |
@@ -90,7 +90,7 @@ esJavaOpts: "" # example: "-Xmx1g -Xms1g"
 resources:
   requests:
     cpu: "1000m"
-    memory: "2Gi"
+    memory: "1Gi"
   limits:
     cpu: "1000m"
     memory: "2Gi"
@@ -172,7 +172,7 @@ antiAffinityTopologyKey: "kubernetes.io/hostname"
 
 # Hard means that by default pods will only be scheduled if there are enough nodes for them
 # and that they will never end up on the same node. Setting this to soft will do this "best effort"
-antiAffinity: "soft"
+antiAffinity: "hard"
 
 # This is the node affinity settings as defined in
 # https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#node-affinity-beta-feature
@@ -187,7 +187,7 @@ podManagementPolicy: "Parallel"
 # If you experience slow pod startups you probably want to set this to `false`.
 enableServiceLinks: true
 
-protocol: http
+protocol: https
 httpPort: 9200
 transportPort: 9300
 
