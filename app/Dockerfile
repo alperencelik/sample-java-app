@@ -1,7 +1,7 @@
 # First stage: build the application with Maven
 FROM openjdk:11-jdk-slim AS build
 WORKDIR /app
-COPY . .
+COPY ./app .
 RUN ./mvnw package
 
 # Second stage: run the application
