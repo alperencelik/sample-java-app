@@ -28,10 +28,16 @@ pipeline {
     stage('Build and Push Docker Image') {
       steps {
         container('kaniko') {
-          sh 'sleep 20'
           sh 'mkdir -p /kaniko/.docker'
           sh 'cp /tmp/.dockerconfigjson /kaniko/.docker/config.json'
-          sh '/kaniko/executor --dockerfile=./app/Dockerfile --context=git://github.com/alperencelik/sample-java-app-challenge.git --destination=alperencelik/sample-java-app:1 '
+          sh '/kaniko/executor --dockerfile=./app/Dockerfile --context=git://github.com/alperencelik/sample-java-app-challenge.git --destination=alperencelik/sample-java-app:${GIT_COMMIT} '
+        }
+      }
+    }
+    post {
+      success {
+        script {
+          env.LATEST_BUILD_ID = env.BUILD_ID
         }
       }
     }

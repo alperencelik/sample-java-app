@@ -11,7 +11,7 @@
       replace:
         path: /tmp/sample-java-app-challenge/gitops/sample-java-app/values.yaml
         regexp: 'tag: .+$'
-        replace: 'tag: v8.1.6' 
+        replace: 'tag: $GIT_COMMIT' 
     - name: Stage changes
       git:
         repo: /tmp/sample-java-app-challenge 
