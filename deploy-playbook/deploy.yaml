@@ -1,5 +1,6 @@
 - name: Make Git commit locally
   hosts: localhost
+  connection: local
   gather_facts: no
   tasks:
     - name: Clone the repository
