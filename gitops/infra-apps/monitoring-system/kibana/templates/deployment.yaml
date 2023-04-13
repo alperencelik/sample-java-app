@@ -49,9 +49,9 @@ spec:
       volumes:
         - name: kibana-tokens
           emptyDir: {}
-        - name: elasticsearch-certs
-          secret:
-            secretName: {{ .Values.elasticsearchCertificateSecret }}
+#         - name: elasticsearch-certs
+          # secret:
+            # secretName: {{ .Values.elasticsearchCertificateSecret }}
         {{- if .Values.kibanaConfig }}
         - name: kibanaconfig
           configMap:
