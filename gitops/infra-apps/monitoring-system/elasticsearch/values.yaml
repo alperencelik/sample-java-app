@@ -28,14 +28,17 @@ esMajorVersion: ""
 
 # Allows you to add any config files in /usr/share/elasticsearch/config/
 # such as elasticsearch.yml and log4j2.properties
-esConfig: {}
+esConfig: 
+  xpack.security.enabled: false
+  xpack.security.transport.ssl.enabled: false
+  xpack.security.http.ssl.enabled: false
 #  elasticsearch.yml: |
 #    key:
 #      nestedkey: value
 #  log4j2.properties: |
 #    key = value
 
-createCert: true
+createCert: false
 
 esJvmOptions: {}
 #  processors.options: |
@@ -187,7 +190,7 @@ podManagementPolicy: "Parallel"
 # If you experience slow pod startups you probably want to set this to `false`.
 enableServiceLinks: true
 
-protocol: https
+protocol: http
 httpPort: 9200
 transportPort: 9300
 
