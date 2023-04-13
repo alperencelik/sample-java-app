@@ -24,6 +24,8 @@ pipeline {
             sh '''
             apt update -y && apt install -y git
             git clone https://github.com/alperencelik/sample-java-app-challenge.git
+            cd deploy-playbook
+            ansible-playbook deploy.yaml
           '''
         
         }
