@@ -12,9 +12,8 @@
       replace:
         path: /tmp/sample-java-app-challenge/gitops/sample-java-app/values.yaml
         regexp: 'tag: .+$'
-        replace: 'tag: {{ $GIT_COMMIT }}' 
-      environment:
-        GIT_COMMIT: "{{ lookup('env', 'GIT_COMMIT') }}"
+        replace: 'tag: {{ COMMIT_SHA }}' 
+
     - name: Stage changes
       shell: cd /tmp/sample-java-app-challenge && git add . && git commit -m "Update version"
     - name: Push changes
