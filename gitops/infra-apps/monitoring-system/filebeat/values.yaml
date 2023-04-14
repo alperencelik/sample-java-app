@@ -41,7 +41,7 @@ daemonset:
       output.logstash:
         hosts: ["logstash-logstash:5044"]
   # Only used when updateStrategy is set to "RollingUpdate"
-  maxUnavailable: 1
+  # maxUnavailable: 1
   nodeSelector: {}
   # A list of secrets and their paths to mount inside the pod
   # This is useful for mounting certificates for security other sensitive values
