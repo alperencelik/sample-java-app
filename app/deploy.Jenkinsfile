@@ -23,6 +23,8 @@ pipeline {
         container('ansible-deploy') {
             sh '''
             apt update -y && apt install -y git
+            git config --global user.email "deploy@alperen.cloud"
+            git config --global user.name "deploy-pipeline"
             git clone https://github.com/alperencelik/sample-java-app-challenge.git
             cd deploy-playbook
             ansible-playbook deploy.yaml --extra-vars "COMMIT_SHA=$GIT_COMMIT"
