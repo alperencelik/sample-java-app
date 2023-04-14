@@ -12,7 +12,7 @@ pipeline {
         spec:
           containers:
           - name: ansible-deploy
-            image: litmuschaos/ansible-runner 
+            image: alperencelik/ansible-deploy:latest 
             command: ['bash', '-c', 'sleep 999999']
       """
     }
