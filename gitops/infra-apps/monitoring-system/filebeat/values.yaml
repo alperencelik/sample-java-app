@@ -38,8 +38,11 @@ daemonset:
             matchers:
             - logs_path:
                 logs_path: "/var/log/containers/"
+            in_cluster: true
+            namespace: ${NAMESPACE}
       output.logstash:
         hosts: ["logstash-logstash:5044"]
+        index: "filebeat-%{[kubernetes][namespace]}-%{+yyyy.MM.dd}"
   # Only used when updateStrategy is set to "RollingUpdate"
   maxUnavailable: 1
   nodeSelector: {}
