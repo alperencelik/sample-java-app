@@ -17,7 +17,7 @@ FROM alpine:3.14
 COPY --from=build /go/bin/validate-webhook /usr/local/bin/
 
 # Copy the TLS certificates (tls.crt and tls.key) into the container
-# COPY tls.crt tls.key /
+COPY cert.pem key.pem /
 
 # Set the entry point for the container
 ENTRYPOINT ["/usr/local/bin/validate-webhook"]

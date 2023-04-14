@@ -79,7 +79,5 @@ func encodeResponse(w http.ResponseWriter, response v1.AdmissionReview) {
 func main() {
 	http.HandleFunc("/validate", validateDeployment)
 	log.Println("Starting webhook server...")
-	if err := http.ListenAndServe(":8080", nil); err != nil {
-		log.Fatalf("Failed to start webhook server: %v", err)
-	}
+	http.ListenAndServeTLS(":8443", "cert.pem", "key.pem", nil)
 }

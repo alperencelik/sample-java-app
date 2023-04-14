@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: validation-webhook
+  labels:
+    app: validation-webhook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: validation-webhook
+  template:
+    metadata:
+      labels:
+        app: validation-webhook
+    spec:
+      containers:
+        - name: validation-webhook
+          image: alperencelik/my-validating-webhook:latest
+          ports:
+            - containerPort: 8443
+          volumeMounts:
+            - name: certs
+              mountPath: /certs
+              readOnly: true
+      volumes:
+        - name: certs
+          secret:
+            secretName: validation-webhook-certs
