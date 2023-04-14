@@ -14,6 +14,12 @@ pipeline {
           - name: ansible-deploy
             image: alperencelik/ansible-deploy:latest 
             command: ['bash', '-c', 'sleep 999999']
+            env:
+            - name: github_token
+              valueFrom:
+                secretKeyRef:
+                  name: github-token
+                  key: token
       """
     }
   }
@@ -22,12 +28,13 @@ pipeline {
       steps {
         container('ansible-deploy') {
             sh '''
+            echo $github_token
             apt update -y && apt install -y git
-            git config --global user.email "deploy@alperen.cloud"
-            git config --global user.name "deploy-pipeline"
+            git config --global user.email "alperencelik58@gmail.com"
+            git config --global user.name "alperencelik"
             git clone https://github.com/alperencelik/sample-java-app-challenge.git
             cd deploy-playbook
-            ansible-playbook deploy.yaml --extra-vars "COMMIT_SHA=$GIT_COMMIT"
+            ansible-playbook deploy.yaml --extra-vars "COMMIT_SHA=$GIT_COMMIT GITHUB_TOKEN=$github_token"
           '''
         
         }

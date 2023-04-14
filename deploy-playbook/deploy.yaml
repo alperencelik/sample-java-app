@@ -17,4 +17,4 @@
     - name: Stage changes
       shell: cd /tmp/sample-java-app-challenge && git add . && git commit -m "Update version"
     - name: Push changes
-      shell: cd /tmp/sample-java-app-challenge && git push origin main
+      shell: cd /tmp/sample-java-app-challenge && git push https://{{ GITHUB_TOKEN }}@github.com/alperencelik/sample-java-app-challenge.git 
