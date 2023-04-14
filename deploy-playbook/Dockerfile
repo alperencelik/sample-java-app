@@ -9,3 +9,10 @@ RUN cp /root/.local/bin/* /usr/local/bin/
 RUN ansible --version
 
 CMD sleep 1000
+
+
+## Image built and pushed to Docker Hub
+
+    # docker build -t deploy-playbook .
+    # docker tag deploy-playbook:latest <dockerhub-username>/deploy-playbook:latest
+    # docker push <dockerhub-username>/deploy-playbook:latest
