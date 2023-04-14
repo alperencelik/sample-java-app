@@ -1,6 +1,6 @@
 # Elasticsearch
 
-This example deploy Logstash 7.15.0 which connects to Elasticsearch (see
+This example deploy Logstash 7.16.1 which connects to Elasticsearch (see
 [values][]).
 
 
@@ -23,6 +23,6 @@ This example deploy Logstash 7.15.0 which connects to Elasticsearch (see
 You can also run [goss integration tests][] using `make test`
 
 
-[elasticsearch helm chart]: https://github.com/elastic/helm-charts/tree/7.15/elasticsearch/examples/default/
-[goss integration tests]: https://github.com/elastic/helm-charts/tree/7.15/logstash/examples/elasticsearch/test/goss.yaml
-[values]: https://github.com/elastic/helm-charts/tree/7.15/logstash/examples/elasticsearch/values.yaml
+[elasticsearch helm chart]: https://github.com/elastic/helm-charts/tree/7.16/elasticsearch/examples/default/
+[goss integration tests]: https://github.com/elastic/helm-charts/tree/7.16/logstash/examples/elasticsearch/test/goss.yaml
+[values]: https://github.com/elastic/helm-charts/tree/7.16/logstash/examples/elasticsearch/values.yaml

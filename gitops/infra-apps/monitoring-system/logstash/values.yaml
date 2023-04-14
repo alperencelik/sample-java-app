@@ -16,7 +16,7 @@ logstashConfig: {}
 # Allows you to add any pipeline files in /usr/share/logstash/pipeline/
 ### ***warn*** there is a hardcoded logstash.conf in the image, override it first
 logstashPipeline: 
-  logstash.conf: |
+  logstash.conf:
     input {
       beats {
         port => 5044
@@ -78,7 +78,7 @@ hostAliases: []
 #  - "bar.local"
 
 image: "docker.elastic.co/logstash/logstash"
-imageTag: "7.15.0"
+imageTag: "7.16.1"
 imagePullPolicy: "IfNotPresent"
 imagePullSecrets: []
 
@@ -195,7 +195,7 @@ updateStrategy: RollingUpdate
 # This is the max unavailable setting for the pod disruption budget
 # The default value of 1 will make sure that kubernetes won't allow more than 1
 # of your pods to be unavailable during maintenance
-# maxUnavailable: 1
+maxUnavailable: 1
 
 podSecurityContext:
   fsGroup: 1000
@@ -214,7 +214,7 @@ terminationGracePeriod: 120
 
 # Probes
 # Default probes are using `httpGet` which requires that `http.host: 0.0.0.0` is part of
-# `logstash.yml`. If needed probes can be disabled or overrided using the following syntaxes:
+# `logstash.yml`. If needed probes can be disabled or overridden using the following syntaxes:
 #
 # disable livenessProbe
 # livenessProbe: null
@@ -267,26 +267,27 @@ lifecycle:
   #   exec:
   #     command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
 
-service: 
-  annotations: {}
-  type: ClusterIP
-  loadBalancerIP: ""
-  ports:
-    - name: beats
-      port: 5044
-      protocol: TCP
-      targetPort: 5044
-    - name: http
-      port: 8080
-      protocol: TCP
-      targetPort: 8080
+service: {}
+#  annotations: {}
+#  type: ClusterIP
+#  loadBalancerIP: ""
+#  ports:
+#    - name: beats
+#      port: 5044
+#      protocol: TCP
+#      targetPort: 5044
+#    - name: http
+#      port: 8080
+#      protocol: TCP
+#      targetPort: 8080
 
 ingress:
   enabled: false
+  className: "nginx"
+  pathtype: ImplementationSpecific
+  hosts:
+    - host: logstash-example.local
+      paths:
+        - path: /
+  tls: []
 #  annotations: {}
-#  hosts:
-#    - host: logstash.local
-#      paths:
-#        - path: /logs
-#          servicePort: 8080
-#  tls: []
