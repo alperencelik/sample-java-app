@@ -12,22 +12,10 @@
       replace:
         path: /tmp/sample-java-app-challenge/gitops/sample-java-app/values.yaml
         regexp: 'tag: .+$'
-        replace: 'tag: $GIT_COMMIT' 
+        replace: 'tag: {{ $GIT_COMMIT }}' 
+      environment:
+        GIT_COMMIT: "{{ lookup('env', 'GIT_COMMIT') }}"
     - name: Stage changes
-      git:
-        repo: /tmp/sample-java-app-challenge 
-        state: 'present'
-        update: 'yes'
-        force: 'yes'
-        args:
-          msg: 'Update the version'  
-          author_name: 'Alp'  
-          author_email: 'alperencelik58@gmail.com'
+      shell: cd /tmp/sample-java-app-challenge && git add . && git commit -m "Update version"
     - name: Push changes
-      git:
-        repo: /tmp/sample-java-app-challenge 
-        remote: origin
-        push: 'yes'
-        force: 'yes'
-        args:
-          commit: 'yes'
+      shell: cd /tmp/sample-java-app-challenge && git push origin main
