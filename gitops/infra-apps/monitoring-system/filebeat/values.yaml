@@ -63,7 +63,14 @@ daemonset:
     limits:
       cpu: "1000m"
       memory: "200Mi"
-  tolerations: []
+  tolerations: 
+    - key: dedicated
+      operator: Equal
+      value: jenkins
+      effect: NoSchedule
+    - key: node-role.kubernetes.io/master
+      operator: Exists
+      effect: NoSchedule
 
 deployment:
   # Annotations to apply to the deployment
