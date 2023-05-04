@@ -104,7 +104,7 @@ prometheus:
   # to podMonitor, supports secure metrics.
   serviceMonitor:
     # enable support for Prometheus Operator
-    enabled: true
+    enabled: false
 
     speaker:
       # optional additional labels for the speaker serviceMonitor
