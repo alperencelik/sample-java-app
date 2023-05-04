@@ -1,34 +1,34 @@
-apiVersion: kyverno.io/v1
-kind: ClusterPolicy
-metadata:
-  name: deny-deployments-without-requests 
-spec:
-  validationFailureAction: Enforce
-  rules:
-  - name: deny-deployments-without-requests
-    match:
-      resources:
-        kinds:
-        - Deployment
-    validate:
-      message: "Resource requests are required for deployments."
-      pattern:
-        spec:
-          template:
-            spec:
-              containers:
-              - resources:
-                  requests: {}
-  - name: deny-deployments-without-resources
-    match:
-      resources:
-        kinds:
-        - Deployment
-    validate:
-      message: "Resources are required for deployments."
-      pattern:
-        spec:
-          template:
-            spec:
-              containers:
-              - resources: {}
+# apiVersion: kyverno.io/v1
+# kind: ClusterPolicy
+# metadata:
+  # name: deny-deployments-without-requests 
+# spec:
+  # validationFailureAction: Enforce
+  # rules:
+  # - name: deny-deployments-without-requests
+    # match:
+      # resources:
+        # kinds:
+        # - Deployment
+    # validate:
+      # message: "Resource requests are required for deployments."
+      # pattern:
+        # spec:
+          # template:
+            # spec:
+              # containers:
+              # - resources:
+                  # requests: {}
+  # - name: deny-deployments-without-resources
+    # match:
+      # resources:
+        # kinds:
+        # - Deployment
+    # validate:
+      # message: "Resources are required for deployments."
+      # pattern:
+        # spec:
+          # template:
+            # spec:
+              # containers:
+              # - resources: {}

@@ -12,7 +12,7 @@ spec:
   selector:
     matchLabels:
       app: {{ template "kube-prometheus-stack.name" . }}-alertmanager
-      release: {{ $.Release.Name | quote }}
+      prometheus: {{ $.Release.Name | quote }}
       self-monitor: "true"
   namespaceSelector:
     matchNames:

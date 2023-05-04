@@ -16,7 +16,7 @@ spec:
   selector:
     matchLabels:
       app: {{ template "kube-prometheus-stack.name" . }}-coredns
-      release: {{ $.Release.Name | quote }}
+      prometheus: {{ $.Release.Name | quote }}
   namespaceSelector:
     matchNames:
       - "kube-system"
