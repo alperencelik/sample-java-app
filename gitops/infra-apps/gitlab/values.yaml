@@ -67,7 +67,7 @@ global:
     apiVersion: ""
     configureCertmanager: false
     provider: nginx
-    # class:
+    class: nginx
     annotations: 
       cert-manager.io/cluster-issuer: acme-issuer 
     enabled: true
