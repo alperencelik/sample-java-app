@@ -68,7 +68,8 @@ global:
     configureCertmanager: true
     provider: nginx
     # class:
-    annotations: {}
+    annotations: 
+      cert-manager.io/cluster-issuer: acme-issuer 
     enabled: true
     tls: {}
     #   enabled: true
