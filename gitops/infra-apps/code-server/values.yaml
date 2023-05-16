@@ -50,7 +50,6 @@ ingress:
     - host: code.alperen.cloud 
       paths:
         - path: /
-          pathType: ImplementationSpecific
   tls:
     - secretName: code.alperen.cloud-tls
       hosts:
